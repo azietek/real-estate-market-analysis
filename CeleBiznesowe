@@ -5,9 +5,10 @@ Cele biznesowe
 - użytkownik ustala ważne dla niego cechy takie jak metraż, liczba pokoi oraz częstotliwość otrzymywania raportów
 - wysyłany jest okresowy raport w którym przedstawiane są ATRAKCYJNE OFERTY* dla użytkownika wraz z różnymi analizami - np. 2.
 
-2. Analiza cen w różnych miastach w Polsce/Wrocławiu
+2. Analiza cen w różnych miejscach wrocławia
 
-- pobranie aktualnych danych z CAŁEJ POLSKI/Wrocławia i analiza, np. przedstawienie mapy z ceną/metr i innymi features (może być bardziej przydatne w podzieleniu miasta na dzielnice - wtedy raczej tylko Wrocław w celu porównania dzielnic, cen, standardów mieszkań)
+- pobranie aktualnych danych z Wrocławia i analiza, np. przedstawienie mapy z ceną/metr i innymi features 
+(może być bardziej przydatne w podzieleniu miasta na dzielnice w celu porównania, cen, standardów mieszkań, etc.)
 
 3. Badanie przebiegu historycznego cen wraz z ich predykcją
 
@@ -15,22 +16,29 @@ Cele biznesowe
 - otodom nie ma dostępnej bazy
 - zescrapowanie archiwum raz + regularne uzupełnianie na podstawie danych pobieranych okresowo z aktualnych ogłoszeń
 
-
 *ATRAKCYJNE OFERTY
 features do wyboru przez użytkownika:
-- zakres cen /m2 (+/- 10%?)
-- powierzchnia (+/- 10%?)
-- liczba pokoi (+/- 1)
+- zakres cen /m2 
+- powierzchnia 
+- liczba pokoi
 - stan wykonczenia
 - oplaty
 - miejsce parkingowe
-- lokalizacja + margines np. do śródmieścia można dodać Nadodrze (?)
+- lokalizacja 
++ marginesy bledu
 
 tagi + ewentualne szukanie w tekście (NLP?)
 
+Potencjalne strony:
+- OLX (~1k - powielaja sie otodomowe)
+- OTODOM (~ 9k)
+- https://gethome.pl/mieszkania/na-sprzedaz/wroclaw/
+- https://www.morizon.pl/mieszkania/wroclaw/
+- https://wroclaw.nieruchomosci-online.pl/mieszkania,sprzedaz/ (<Response [503]> - temporary niedostepne)
+
 TO DO:
-- see how NLP looks like in Python
-- see how much data we have (oplaty moga miec duzo nulli np, wtedy out)
+- see how NLP looks like in Python (find substitute?)
+- see how to do map
 - detail features, ale to raczej juz majac CSV, bo teraz to ciezko 
 
 
