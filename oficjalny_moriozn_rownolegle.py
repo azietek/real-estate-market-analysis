@@ -40,13 +40,6 @@ def get_info_morizon(url):
         lokalizacja = None
     
 
-
-    
-    try:
-        stan_wykonczenia = driver.find_element(By.XPATH, ).text ##########
-    except:
-        stan_wykonczenia = None
-
     try:
         x=''
         dane = driver.find_elements(By.XPATH, '//*[@id="app"]/div[2]/main/div[4]/section/div[6]')
@@ -64,14 +57,10 @@ def get_info_morizon(url):
 
     
     try:
-        miejsce_parkingowe = driver.find_element(By.XPATH, ).text ##########
+        miejsce_parkingowe = driver.find_element(By.XPATH, '//*[@id="app"]/div[2]/main/div[4]/section/div[10]/ul/li[3]/span').text 
     except:
         miejsce_parkingowe = None
 
-    try:
-        ogrzewanie = driver.find_element(By.XPATH, ).text ########
-    except:
-        ogrzewanie = None
 
     try:
         button = driver.find_element(By.XPATH, '//*[@id="app"]/div[2]/main/div[4]/section/div[4]/button')
@@ -84,8 +73,8 @@ def get_info_morizon(url):
     except:
         opis = None
   
-    col = ['nazwa_ogloszenia', 'link','cena', 'opis', 'lokalizacja','pokoje','stan wykonczenia', 'miejsce parkingowe']
-    dane = [[nazwa,url,cena, opis, lokalizacja,pokoje, stan_wykonczenia, miejsce_parkingowe]]
+    col = ['nazwa_ogloszenia', 'link','cena', 'opis', 'lokalizacja','pokoje', 'miejsce parkingowe']
+    dane = [[nazwa,url,cena, opis, lokalizacja,pokoje, miejsce_parkingowe]]
     czesc = pd.DataFrame(data=dane,columns=col)
     koncowy = pd.concat([czesc, wynik], ignore_index = False ,axis=1)
     driver.quit()
@@ -109,8 +98,8 @@ def get_links(url):
     return list(set(links))
 
 def obrabianie(dane):
-    features_df = pd.DataFrame(columns=['powierzchnia', 'balkon','taras', 'piętro', 'rok budowy'])
-    slownik = {'Pow. całkowita':None, 'Balkon':None, 'Taras':None, 'Piętro':None, 'Rok budowy':None}
+    features_df = pd.DataFrame(columns=['powierzchnia', 'balkon','taras', 'piętro', 'rok budowy','stan wykonczenia'])
+    slownik = {'Pow. całkowita':None, 'Balkon':None, 'Taras':None, 'Piętro':None, 'Rok budowy':None,'Stan nieruchomości':None}
     dane = dane.split('\n')
     nowe=[]
     for i in dane:
@@ -119,6 +108,7 @@ def obrabianie(dane):
         if nowe[i] in slownik.keys():
             slownik[nowe[i]] = nowe[i+1]
     slownik['powierzchnia']=slownik['Pow. całkowita']
+    slownik['stan wykonczenia']=slownik['Stan nieruchomości']
     data_dict_lower = {key.lower(): value for key, value in slownik.items()}
     features_df.loc[len(features_df)] = data_dict_lower
     return features_df
@@ -159,4 +149,4 @@ def scrapowanie(URL, page_start, page_stop,threads):
     return wynik
 
 if __name__ == '__main__':
-    scrapowanie('https://www.morizon.pl/mieszkania/wroclaw/', 1, 3,4)
+    scrapowanie('https://www.morizon.pl/mieszkania/wroclaw/', 1, 2,4)
