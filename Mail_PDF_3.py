@@ -2,7 +2,9 @@ import jinja2
 import pdfkit
 from datetime import datetime
 import pandas as pd
+import time 
 
+import schedule
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -18,7 +20,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 def generate_pdf(data):
     """Generuje plik PDF na podstawie podanej ramki danych dotyczącej nieruchomości."""
 
-    df = data.iloc[0:6]
+    df = data.iloc[0:7]
 
     # zbieranie linków do zdjęć
     img_urls = []
@@ -165,6 +167,14 @@ def sent_mail(sender, receiver, body, pdf_dir):
         smtp.sendmail(sender, receiver, msg.as_string())  # msg.as_string() - zapewnia poprawny format maila
 
 properties = pd.read_csv('D:/Jupyter/MM Python - projekt/mail/sample4map2.csv')
+# generate_pdf(properties)
+# sent_mail('Raport.wyceny@gmail.com', 'piotr.granieczny26@gmail.com', 'Twój raport nieruchomości.', 'D:/Jupyter/MM Python - projekt/mail/Raport.pdf')
 
-generate_pdf(properties)
-sent_mail('Raport.wyceny@gmail.com', '315221@uwr.edu.pl', 'Twój raport nieruchomości.', 'D:/Jupyter/MM Python - projekt/mail/Raport.pdf')
+# Schedule the tasks
+schedule.every().sunday.at("23:10").do(generate_pdf, properties)
+schedule.every().sunday.at("23:10").do(sent_mail, 'Raport.wyceny@gmail.com', 'piotr.granieczny26@gmail.com', 'Twój raport nieruchomości.', 'D:/Jupyter/MM Python - projekt/mail/Raport.pdf')
+
+# Keep the script running
+while True:
+    schedule.run_pending() # sprawdza czy są zadania do wykonania
+    time.sleep(1)          # ma na celu ogranieczenie zużycia zasobów CPU
