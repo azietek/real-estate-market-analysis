@@ -152,11 +152,12 @@ def get_info_otodom(url):
     if opis == 'Obsługa zdalna':
         opis = driver.find_element(By.XPATH, '//*[@id="__next"]/main/div[2]/div[2]/section[3]/div/div/div').text                                             
 
-    col = ['nazwa ogloszenia', 'cena', 'opis', 'lokalizacja', 'zametr','pokoje', 'powierzchnia' , 'wysposażenie', 'czynsz', 'rodzaj zabudowy', 'rynek',
+    col = ['nazwa ogloszenia', 'cena', 'opis', 'lokalizacja', 'zametr', 'pokoje', 'powierzchnia', 'wysposażenie', 'czynsz', 'rodzaj zabudowy', 'rynek',
             'piętro', 'typ', 'forma wlasnosci', 'stan wykonczenia', 'balkon/ogrod/taras', 'miejsce parkingowe', 'ogrzewanie', 'telefon']
     dane = [[nazwa, cena, opis, lokalizacja, zametr, pokoje, powierzchnia, wysposazenie, czynsz, rodzaj_zabudowy, rynek,
               pietro, typ, forma_wlasnosci, stan_wykonczenia, balkon_ogrod_taras, miejsce_parkingowe, ogrzewanie, tel]]
 
+    driver.quit()
 
     return pd.DataFrame(data=dane,columns=col)
 
@@ -169,13 +170,15 @@ def get_links(url):
     button.click()
     linki = driver.find_elements(By.CSS_SELECTOR, 'a')
 
+    driver.quit()
+
     for link in linki:
         if 'oferta' in link.get_attribute("href"):
             links.append(link.get_attribute("href"))
-            
+    
     return list(set(links))
 
-def start_scraper(URL, page_start, page_count, threads):
+def start_scraper(URL, page_start, page_count, threads, csv_name):
     """Startuje scraper dla OtoDom. Jako page_start należy podać wartość większą od 1, zalecana wartość page_count to nie więcej niż 20.
       Zalecana liczba wątków (threads) to: liczba wątków - 2."""
 
@@ -190,7 +193,7 @@ def start_scraper(URL, page_start, page_count, threads):
     pool.close()
 
     if len(oficjalne_linki) > 1:
-        oficjalne_linki = [url for sublist in list for url in sublist]
+        oficjalne_linki = [url for sublist in oficjalne_linki for url in sublist]
     else:
         oficjalne_linki = oficjalne_linki[0]
 
@@ -207,15 +210,41 @@ def start_scraper(URL, page_start, page_count, threads):
 
     wynik['link'] = oficjalne_linki
 
-    wynik.to_csv('D:/Jupyter/MM Python - projekt/oferty_test.csv', sep = ',', index = False, encoding = 'utf-8') 
+    wynik.to_csv('D:/Jupyter/MM Python - projekt/' + csv_name + '.csv', sep = ',', index = False, encoding = 'utf-8') 
 
 
 if __name__ == '__main__':
-    mp.freeze_support()
-    linki = start_scraper('https://www.otodom.pl/pl/wyniki/sprzedaz/mieszkanie/dolnoslaskie/wroclaw/wroclaw/wroclaw?limit=36&ownerTypeSingleSelect=ALL&daysSinceCreated=7&by=DEFAULT&direction=DESC&viewType=listing', 1, 1, 6)
 
-    # print(linki)
-    # print(len(linki))
-    # print(len(linki[0]))
-    # print(len(linki[1]))
-    # print(len(linki[2]))
+    mp.freeze_support()
+    URL = 'https://www.otodom.pl/pl/wyniki/sprzedaz/mieszkanie/dolnoslaskie/wroclaw/wroclaw/wroclaw?limit=36&ownerTypeSingleSelect=ALL&daysSinceCreated=7&by=DEFAULT&direction=DESC&viewType=listing'
+    
+    start = 1
+
+    for i in range(1, 5):
+        start_scraper(URL, start, 3, 4, 'otodom_' + str(i))
+    start += 3
+    
+    # start_scraper(URL, 13, 1, 4, 'otodom_p13')
+    # start = 17
+    # start_scraper(URL, start, 3, 4, 'otodom_6')
+    # start = 20
+    # start_scraper(URL, start, 3, 4, 'otodom_7')
+    # start = 23
+    # start_scraper(URL, start, 3, 4, 'otodom_8')
+    # start = 26
+    # start_scraper(URL, start, 3, 4, 'otodom_9')
+    # start = 29
+    # start_scraper(URL, start, 3, 4, 'otodom_10')
+    # start = 32
+    # start_scraper(URL, start, 3, 4, 'otodom_11')
+    # start = 35
+    # start_scraper(URL, start, 3, 4, 'otodom_12')
+    # start = 38
+    # start_scraper(URL, start, 3, 4, 'otodom_13')
+    # start_scraper(URL, 41, 1, 4, 'otodom_last')
+
+   
+
+# [126832:125392:0124/195229.175:ERROR:ssl_client_socket_impl.cc(975)] handshake failed; returned -1, SSL error code 1, net_error -3
+# [139516:139512:0124/201609.193:ERROR:gpu_process_host.cc(992)] GPU process exited unexpectedly: exit_code=34
+# [low_level_alloc.cc : 554] RAW: Check new_pages != nullptr failed: VirtualAlloc failed
