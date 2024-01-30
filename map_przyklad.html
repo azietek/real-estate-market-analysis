@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_c5f03584b5115f713ee35f322ee71be2 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_c5f03584b5115f713ee35f322ee71be2" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_c5f03584b5115f713ee35f322ee71be2 = L.map(
+                "map_c5f03584b5115f713ee35f322ee71be2",
+                {
+                    center: [51.1089776, 17.0326689],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+            L.control.scale().addTo(map_c5f03584b5115f713ee35f322ee71be2);
+
+            
+
+        
+    
+            var tile_layer_0d33ae5cadc29e15ed8bb6db979f6113 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_0d33ae5cadc29e15ed8bb6db979f6113.addTo(map_c5f03584b5115f713ee35f322ee71be2);
+        
+    
+            var tile_layer_9e520df54b8d004b45145506dc3a6835 = L.tileLayer(
+                "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1Ijoid3ljZW55IiwiYSI6ImNscnRraDBsajA3NXQyam5hdjloZTBoZ3EifQ.0gU_ozTPH70_eXfyfCAqkA",
+                {"attribution": "Mapbox", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_9e520df54b8d004b45145506dc3a6835.addTo(map_c5f03584b5115f713ee35f322ee71be2);
+        
+    
+            var marker_cluster_7073585a0a2d1c465f3b6414f66409c7 = L.markerClusterGroup(
+                {}
+            );
+        
+    
+            var marker_ed2df480b7fdb88914198e97959e1cb6 = L.marker(
+                [51.1102016, 17.053976],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_7d1e9dda725a2cdfd2042f01861485a8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "search", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_ed2df480b7fdb88914198e97959e1cb6.setIcon(icon_7d1e9dda725a2cdfd2042f01861485a8);
+        
+    
+        var popup_9630424c5497f8a5d1fa232bf7640199 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6780cc75b2d88dd48b6af70288c7e6c1 = $(`<div id="html_6780cc75b2d88dd48b6af70288c7e6c1" style="width: 100.0%; height: 100.0%;">plac Grunwaldzki 2, Wrocław</div>`)[0];
+                popup_9630424c5497f8a5d1fa232bf7640199.setContent(html_6780cc75b2d88dd48b6af70288c7e6c1);
+            
+        
+
+        marker_ed2df480b7fdb88914198e97959e1cb6.bindPopup(popup_9630424c5497f8a5d1fa232bf7640199)
+        ;
+
+        
+    
+    
+            var marker_4fb81ddd3945a52c5c1d5721ace55da2 = L.marker(
+                [51.1379271, 16.9212617],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_154cafdaa8dcad7854424026a4c732ef = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_4fb81ddd3945a52c5c1d5721ace55da2.setIcon(icon_154cafdaa8dcad7854424026a4c732ef);
+        
+    
+        var popup_4da92434a7f1fa2a647f7382dd7d57a6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1bb01a8fb5f04bdd427d29000d90d3ff = $(`<div id="html_1bb01a8fb5f04bdd427d29000d90d3ff" style="width: 100.0%; height: 100.0%;">Konińska, Wrocław</div>`)[0];
+                popup_4da92434a7f1fa2a647f7382dd7d57a6.setContent(html_1bb01a8fb5f04bdd427d29000d90d3ff);
+            
+        
+
+        marker_4fb81ddd3945a52c5c1d5721ace55da2.bindPopup(popup_4da92434a7f1fa2a647f7382dd7d57a6)
+        ;
+
+        
+    
+    
+            var marker_5591689b13072dddb7deeb16a0b15fa0 = L.marker(
+                [51.0507767, 17.0965116],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_404355a3a2fe8a1c06bc9ebc0861235e = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_5591689b13072dddb7deeb16a0b15fa0.setIcon(icon_404355a3a2fe8a1c06bc9ebc0861235e);
+        
+    
+        var popup_05149f37580dcc56c1e56ca97ecd6967 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_56765487f04f0348f1bcc301bf344033 = $(`<div id="html_56765487f04f0348f1bcc301bf344033" style="width: 100.0%; height: 100.0%;">Ignacego Mościckiego, Wrocław</div>`)[0];
+                popup_05149f37580dcc56c1e56ca97ecd6967.setContent(html_56765487f04f0348f1bcc301bf344033);
+            
+        
+
+        marker_5591689b13072dddb7deeb16a0b15fa0.bindPopup(popup_05149f37580dcc56c1e56ca97ecd6967)
+        ;
+
+        
+    
+    
+            var marker_5a37f38c95b1db54309f9950d745dc3e = L.marker(
+                [51.1379271, 16.9212617],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_73268fc5c0e665a0a66ed5e71fae7bff = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "green", "prefix": "glyphicon"}
+            );
+            marker_5a37f38c95b1db54309f9950d745dc3e.setIcon(icon_73268fc5c0e665a0a66ed5e71fae7bff);
+        
+    
+        var popup_8592a96499913a358155e30578b995b4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_c2b61b77c18457609ec660920cebb094 = $(`<div id="html_c2b61b77c18457609ec660920cebb094" style="width: 100.0%; height: 100.0%;">Konińska, Wrocław</div>`)[0];
+                popup_8592a96499913a358155e30578b995b4.setContent(html_c2b61b77c18457609ec660920cebb094);
+            
+        
+
+        marker_5a37f38c95b1db54309f9950d745dc3e.bindPopup(popup_8592a96499913a358155e30578b995b4)
+        ;
+
+        
+    
+    
+            var marker_7e8f050dc2fd6ebfedbb3268d7ec84d1 = L.marker(
+                [51.0507767, 17.0965116],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_ce0714e2a443a1306786f5cc6f61b00c = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "map-marker", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_7e8f050dc2fd6ebfedbb3268d7ec84d1.setIcon(icon_ce0714e2a443a1306786f5cc6f61b00c);
+        
+    
+        var popup_8a0483614bfe2bbac54464cee2408655 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a76e84c8e8fafbdff29ba800022deeed = $(`<div id="html_a76e84c8e8fafbdff29ba800022deeed" style="width: 100.0%; height: 100.0%;">Ignacego Mościckiego, Wrocław</div>`)[0];
+                popup_8a0483614bfe2bbac54464cee2408655.setContent(html_a76e84c8e8fafbdff29ba800022deeed);
+            
+        
+
+        marker_7e8f050dc2fd6ebfedbb3268d7ec84d1.bindPopup(popup_8a0483614bfe2bbac54464cee2408655)
+        ;
+
+        
+    
+    
+            var marker_aa8a30ae67564294f2f087cf68ef5679 = L.marker(
+                [51.116794, 17.0621552],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_294edc4fa5cfdb29f795456d9180fe73 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "map-marker", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_aa8a30ae67564294f2f087cf68ef5679.setIcon(icon_294edc4fa5cfdb29f795456d9180fe73);
+        
+    
+        var popup_5c48116085411171acec291e64218bb3 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_71a9f5e50efc5c8280d54a736ec82cac = $(`<div id="html_71a9f5e50efc5c8280d54a736ec82cac" style="width: 100.0%; height: 100.0%;">Nowowiejska, Wrocław</div>`)[0];
+                popup_5c48116085411171acec291e64218bb3.setContent(html_71a9f5e50efc5c8280d54a736ec82cac);
+            
+        
+
+        marker_aa8a30ae67564294f2f087cf68ef5679.bindPopup(popup_5c48116085411171acec291e64218bb3)
+        ;
+
+        
+    
+    
+            var marker_f71884db465f1b34e2b655de6fddacc2 = L.marker(
+                [51.0519878, 17.0828151],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_159f9c9f98e28ea1e095da46c475f9b7 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "map-marker", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_f71884db465f1b34e2b655de6fddacc2.setIcon(icon_159f9c9f98e28ea1e095da46c475f9b7);
+        
+    
+        var popup_b80a66f757e5506a5a0ccec004d0d3f0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e5f8e542425f9f26a9780af1cde07e6d = $(`<div id="html_e5f8e542425f9f26a9780af1cde07e6d" style="width: 100.0%; height: 100.0%;">Woskowa, Wrocław</div>`)[0];
+                popup_b80a66f757e5506a5a0ccec004d0d3f0.setContent(html_e5f8e542425f9f26a9780af1cde07e6d);
+            
+        
+
+        marker_f71884db465f1b34e2b655de6fddacc2.bindPopup(popup_b80a66f757e5506a5a0ccec004d0d3f0)
+        ;
+
+        
+    
+    
+            var marker_32f60e4da4e8d9271f50a8ff0213afe1 = L.marker(
+                [51.0519878, 17.0828151],
+                {}
+            ).addTo(marker_cluster_7073585a0a2d1c465f3b6414f66409c7);
+        
+    
+            var icon_c94680c0be020de2ccf297ad9ac17004 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "map-marker", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            );
+            marker_32f60e4da4e8d9271f50a8ff0213afe1.setIcon(icon_c94680c0be020de2ccf297ad9ac17004);
+        
+    
+        var popup_a7c46a94681c328b6cc6ee88573fb30f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8a2a4da2594019df5a904964c09f52e3 = $(`<div id="html_8a2a4da2594019df5a904964c09f52e3" style="width: 100.0%; height: 100.0%;">Woskowa, Wrocław</div>`)[0];
+                popup_a7c46a94681c328b6cc6ee88573fb30f.setContent(html_8a2a4da2594019df5a904964c09f52e3);
+            
+        
+
+        marker_32f60e4da4e8d9271f50a8ff0213afe1.bindPopup(popup_a7c46a94681c328b6cc6ee88573fb30f)
+        ;
+
+        
+    
+    
+            marker_cluster_7073585a0a2d1c465f3b6414f66409c7.addTo(map_c5f03584b5115f713ee35f322ee71be2);
+        
+    
+            var poly_line_d01be133184fe1e019db47b66d890dce = L.polyline(
+                [[51.11045, 17.05419], [51.11255, 17.05636], [51.1114, 17.05922], [51.10844, 17.04846], [51.10574, 17.0472], [51.09516, 17.0574], [51.08188, 17.07748], [51.07724, 17.07526], [51.07404, 17.07672], [51.0597, 17.08649], [51.05078, 17.09651], [51.05078, 17.09651], [51.05898, 17.08717], [51.05199, 17.08282], [51.05199, 17.08282], [51.04827, 17.08333], [51.03796, 17.0734], [51.04205, 17.06652], [51.04305, 17.06087], [51.03489, 17.0656], [51.02394, 17.0614], [50.97248, 17.07166], [50.97074, 17.07141], [50.97003, 17.06595], [50.9891, 17.0551], [51.00558, 17.03319], [51.02082, 17.01877], [51.04569, 16.98271], [51.05043, 16.96542], [51.04632, 16.93929], [51.04794, 16.93423], [51.07579, 16.92726], [51.10378, 16.93431], [51.1236, 16.93211], [51.13197, 16.93667], [51.1338, 16.93298], [51.13844, 16.93562], [51.13991, 16.92167], [51.13793, 16.92126], [51.13793, 16.92126], [51.13979, 16.92161], [51.13802, 16.94452], [51.13269, 16.95711], [51.1267, 16.97969], [51.12995, 16.98265], [51.12628, 16.99478], [51.1259, 17.0086], [51.11932, 17.01431], [51.11696, 17.01961], [51.118, 17.02966], [51.11672, 17.03382], [51.11813, 17.03861], [51.11606, 17.05806], [51.11861, 17.05882], [51.11679, 17.06216], [51.11197, 17.06045], [51.11045, 17.05419]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(map_c5f03584b5115f713ee35f322ee71be2);
+        
+</script>
+</html>
