@@ -13,7 +13,9 @@ import pandas as pd
 
 
 def get_info_morizon(url):
-    
+    '''Funkcja bioraca pojedynczy link do oferty morizona i wyciagajaca z niego informacje: nazwa, cena, pokoje, lokalizacja,
+    miejsce_parkingowe, opis, 'powierzchnia', 'balkon','taras', 'piętro', 'rok budowy','stan wykonczenia'.
+    Zwraca DF z informacjami, None jesli nie bylo info.'''
     driver = webdriver.Chrome()
     driver.get(url)
     driver.maximize_window()
@@ -84,6 +86,8 @@ def get_info_morizon(url):
     return koncowy
 
 def get_links(url):
+    '''Funkcja scrapujaca linki z storny morizona z linkami, wybiera tylko te faktycznie dotyczace ofert. Zwraca liste z linkami bez duplikacji.
+    url - strona z ktorej chcemy zebrac linki'''
     links = []
     driver = webdriver.Chrome()
     driver.get(url)
@@ -98,6 +102,8 @@ def get_links(url):
     return list(set(links))
 
 def obrabianie(dane):
+    '''Funkcja wyciagajaca ze zlepionego tekstu danych z morizona informacje, ktore nas interesuja i znajdowaly sie na zmiennej czesci storny. Zwraca wyniki w formie df.
+    '''
     features_df = pd.DataFrame(columns=['powierzchnia', 'balkon','taras', 'piętro', 'rok budowy','stan wykonczenia'])
     slownik = {'Pow. całkowita':None, 'Balkon':None, 'Taras':None, 'Piętro':None, 'Rok budowy':None,'Stan nieruchomości':None}
     dane = dane.split('\n')
@@ -115,6 +121,8 @@ def obrabianie(dane):
 
 
 def ogarniacz_linkow(URL, page_start, page_stop,threads):
+    '''Url do glownej storny moziona z linkami, page_start od jakiej strony zaczac, page_stop na jakiej skonczyc. Zbiera linki do ofert z 
+    podanego zakresu stron, zwraca je w formie listy. threads- liczba watkow'''
     urls = []                 
 
     for i in range(page_start, page_stop):
@@ -133,12 +141,14 @@ def ogarniacz_linkow(URL, page_start, page_stop,threads):
         
 
 def scrapowanie(URL, page_start, page_stop,threads):
-    '''url do glownej strony z ktorej ma sciagac linki, page start nr strony na ktorej ma zaczac, page stop numer strony na ktorej ma skonczyc -1, threads liczba watkow'''
+    '''Funkcja sklejajaca wszystkie powyzsze i odpalajaca wszystko automatycznie, Url do glownej strony morizona, page_start page_stop zakres stron jakie ma zescrapowac. 
+    threads- liczba watkow'''
+   
     wynik=pd.DataFrame()
     linki = ogarniacz_linkow(URL, page_start, page_stop,threads)
 
-    pool = mp.Pool(threads)      # Ustawia ilczbę wątków # mp.cpu_count()//2) 
-    results = pool.map(get_info_morizon, [url for url in linki]) # [url for i in range(len(oficjalne_linki)) for url in oficjalne_linki[i]]
+    pool = mp.Pool(threads)      
+    results = pool.map(get_info_morizon, [url for url in linki]) 
     pool.close()
 
     for i in results:
@@ -149,4 +159,4 @@ def scrapowanie(URL, page_start, page_stop,threads):
     return wynik
 
 if __name__ == '__main__':
-    scrapowanie('https://www.morizon.pl/mieszkania/wroclaw/', 1, 2,4)
+    scrapowanie('https://www.morizon.pl/mieszkania/wroclaw/?ps%5Bdate_from%5D=2024-01-27&0%5Bfbclid%5D=IwAR1uIl9_A2K99371JUNZYhIVMo85bnQFFA6IhFKzefQeAfKe3cvPx1pNWgQ', 1, 2,4)
